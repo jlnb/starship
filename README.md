@@ -1,3 +1,3 @@
 # starship
 
-Configuration starship.
+Configuration of starship and wezterm.
