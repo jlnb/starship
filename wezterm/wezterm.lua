@@ -131,7 +131,9 @@ wezterm.on("update-right-status", function(window, _)
 	}))
 end)
 
-config.default_prog = { "powershell.exe" }
+config.default_prog = { "pwsh.exe" }
+config.initial_rows = 35
+config.initial_cols = 130
 
 -- and finally, return the configuration to wezterm
 return config
