@@ -1,6 +1,7 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
 local utf8 = require("utf8")
+local act = wezterm.action
 
 -- This table will hold the configuration.
 local config = {}
@@ -91,6 +92,11 @@ config.keys = {
 		key = "UpArrow",
 		action = wezterm.action.AdjustPaneSize({ "Up", 5 }),
 	},
+    {
+        mods = "CTRL",
+        key = "v",
+        action = act.PasteFrom 'Clipboard' ,
+    },
 }
 
 for i = 0, 9 do
