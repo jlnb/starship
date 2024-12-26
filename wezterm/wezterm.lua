@@ -18,7 +18,7 @@ config.font = wezterm.font("JetBrains Mono")
 config.font_size = 12
 
 config.window_decorations = "RESIZE"
-config.window_background_opacity = 1.0
+config.window_background_opacity = 0.9
 
 -- tmux
 config.leader = { key = "q", mods = "ALT", timeout_milliseconds = 2000 }
