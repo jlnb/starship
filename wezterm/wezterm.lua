@@ -18,6 +18,7 @@ config.font = wezterm.font("JetBrains Mono")
 config.font_size = 12
 
 config.window_decorations = "RESIZE"
+config.window_background_opacity = 1.0
 
 -- tmux
 config.leader = { key = "q", mods = "ALT", timeout_milliseconds = 2000 }
@@ -92,12 +93,17 @@ config.keys = {
 		key = "UpArrow",
 		action = wezterm.action.AdjustPaneSize({ "Up", 5 }),
 	},
-    {
-        mods = "CTRL",
-        key = "v",
-        action = act.PasteFrom 'Clipboard' ,
-    },
 }
+
+action = wezterm.action_callback(function(window, pane)
+    if pane:is_alt_screen_active() then
+        -- allow "full screen" TUI apps to receive and handle CTRL-C for themselves
+        window:perform_action(wezterm.action.SendKey{key='v', mods='CTRL'})
+    else
+        -- otherwise, treat it as a paste operation
+        window:perform_action(wezterm.action{ PasteFrom = 'Clipboard' })
+    end
+end)
 
 for i = 0, 9 do
 	-- leader + number to activate that tab
