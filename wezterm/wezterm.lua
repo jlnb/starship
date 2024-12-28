@@ -1,7 +1,7 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
 local utf8 = require("utf8")
-local act = wezterm.action
+--local act = wezterm.action
 
 -- This table will hold the configuration.
 local config = {}
@@ -93,17 +93,17 @@ config.keys = {
 		key = "UpArrow",
 		action = wezterm.action.AdjustPaneSize({ "Up", 5 }),
 	},
-}
+ }
 
-action = wezterm.action_callback(function(window, pane)
-    if pane:is_alt_screen_active() then
-        -- allow "full screen" TUI apps to receive and handle CTRL-C for themselves
-        window:perform_action(wezterm.action.SendKey{key='v', mods='CTRL'})
-    else
-        -- otherwise, treat it as a paste operation
-        window:perform_action(wezterm.action{ PasteFrom = 'Clipboard' })
-    end
-end)
+--action = wezterm.action_callback(function(window, pane)
+--    if pane:is_alt_screen_active() then
+--        -- allow "full screen" TUI apps to receive and handle CTRL-C for themselves
+--        window:perform_action(wezterm.action.SendKey{key='v', mods='CTRL'})
+--    else
+--        -- otherwise, treat it as a paste operation
+--        window:perform_action(wezterm.action{ PasteFrom = 'Clipboard' })
+--    end
+--end)
 
 for i = 0, 9 do
 	-- leader + number to activate that tab
