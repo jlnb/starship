@@ -143,9 +143,23 @@ wezterm.on("update-right-status", function(window, _)
 	}))
 end)
 
-config.default_prog = { "pwsh.exe" }
+-- config.default_prog = { "/opt/homebrew/bin/nu", "--login" }
 config.initial_rows = 35
 config.initial_cols = 130
+
+local os_config = nil
+
+if wezterm.target_triple == "x86_64-pc-windows-msvc" then
+  os_config = require("config.windows")
+elseif wezterm.target_triple:find("apple") then
+  os_config = require("config.mac")
+else
+  os_config = require("config.linux")
+end
+
+for k, v in pairs(os_config) do
+  config[k] = v
+end
 
 -- and finally, return the configuration to wezterm
 return config
