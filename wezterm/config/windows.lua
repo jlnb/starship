@@ -1,5 +1,5 @@
 local wezterm = require 'wezterm'
 
 return {
-	default_prog = { "pwsh.exe" }
+	default_prog = { "nu.exe" }
 }
